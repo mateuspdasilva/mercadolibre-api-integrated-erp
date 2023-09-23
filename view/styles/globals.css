@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "daisyui/dist/full.css";
+@import "@fontsource/inter";
+
+body {
+  font-family: "Inter";
+}

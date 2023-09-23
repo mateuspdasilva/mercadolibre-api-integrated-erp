@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  express-server:
+    container_name: node-express-server
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/usr/src/app/server
+      - ./sequelize.js:/usr/src/app/sequelize.js
+    depends_on:
+      - db
+    working_dir: /usr/src/app/server
+
+  db:
+    container_name: mysql-database
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
